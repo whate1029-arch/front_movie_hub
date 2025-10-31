@@ -49,9 +49,6 @@ const nextConfig = {
 
   // SWC minification for faster builds
   swcMinify: true,
-
-  // Output configuration for deployment
-  output: 'standalone',
 }
 
 module.exports = nextConfig
