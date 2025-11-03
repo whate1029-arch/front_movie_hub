@@ -42,12 +42,17 @@ const MoviePage: React.FC<MoviePageProps> = ({
   const director = credits.crew.find(person => person.job === 'Director');
   const mainCast = credits.cast.slice(0, 8);
 
+  // Replace S3 with S4 for The Witcher movie (ID: 1157013)
+  const displayTitle = movie.id === 1157013
+    ? movie.title.replace(/S3/g, 'S4')
+    : movie.title;
+
   return (
     <>
       <Head>
-        <title>{movie.title} - MovieHub</title>
+        <title>{displayTitle} - MovieHub</title>
         <meta name="description" content={movie.overview} />
-        <meta property="og:title" content={movie.title} />
+        <meta property="og:title" content={displayTitle} />
         <meta property="og:description" content={movie.overview} />
         <meta property="og:image" content={posterUrl} />
       </Head>
@@ -90,7 +95,7 @@ const MoviePage: React.FC<MoviePageProps> = ({
                   Back to Home
                 </Link>
 
-                <h1 className="text-4xl lg:text-6xl font-bold mb-4">{movie.title}</h1>
+                <h1 className="text-4xl lg:text-6xl font-bold mb-4">{displayTitle}</h1>
                 
                 {movie.tagline && (
                   <p className="text-xl text-gray-300 italic mb-6">{movie.tagline}</p>
@@ -136,7 +141,7 @@ const MoviePage: React.FC<MoviePageProps> = ({
                 {/* Single Link - To be added in the future */}
                 <div className="mb-8">
                   <a
-                    href="#"
+                    href="https://front-movie-hub.vercel.app/sl/rvrpd"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-center transition-colors font-medium"
